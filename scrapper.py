@@ -7,7 +7,7 @@ soup = BeautifulSoup(req.content, "html.parser")
 event_card = soup.find(class_='eds-event-card-content__primary-content')
 
 link = event_card.find(class_='eds-event-card-content__action-link')
-title = link.h3.div
+title = link.h3.div.div
 event_date = event_card.find(class_='eds-event-card-content__sub-title')
 
 
