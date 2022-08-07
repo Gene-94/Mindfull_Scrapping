@@ -8,11 +8,11 @@ soup = BeautifulSoup(req.content, "html.parser")
 #event_cards = soup.find_all(class_='eds-event-card-content__primary-content')
 event_cards = soup.find_all("article")
 
-for card in event_cards:
-    link = card.find(class_='eds-event-card-content__action-link')
+for i in range(0, len(event_cards), 2):
+    link = event_cards[i].find(class_='eds-event-card-content__action-link')
     title = link.h3.div.div
-    event_date = card.find(class_='eds-event-card-content__sub-title')
-    image = card.img
+    event_date = event_cards[i].find(class_='eds-event-card-content__sub-title')
+    image = event_cards[i].img
 
     print(link.get('href'))
     print("-"*20)
