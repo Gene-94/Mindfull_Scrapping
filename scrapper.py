@@ -21,6 +21,9 @@ while True:
 #event_cards = soup.find_all(class_='eds-event-card-content__primary-content')
 event_cards = soup.find_all("article")
 
+print("### Mindfullness & Meditation ###")
+print("Check all the upcoming events in the next 48 hours")
+
 for i in range(0, len(event_cards), 2):
     link = event_cards[i].find(class_='eds-event-card-content__action-link')
     title = link.h3.div.div
@@ -40,15 +43,16 @@ for i in range(0, len(event_cards), 2):
     date_offset = eval(str(date_offset)+timezone)
     event_date = event_date - relativedelta(hours=date_offset)
 
-    print(link.get('href'))
-    print("-"*20)
-    print(title.text) 
-    print("-"*20)
-    print(event_date_str)
-    print("-"*20)
-    print(event_date,"UTC"+timezone)
-    print("-"*20)
-    print(image.get('src'))
-    print("\n"+"#"*20,"\n")
+    if((event_date + relativedelta(hours=48)) >= datetime.now()):
+        
+        print("-"*20)
+        print(title.text) 
+        print(event_date,"UTC"+timezone)
+        print("see more about -> "+link.get('href'))
+        #print(image.get('src'))
+        print("-"*20)
 
-print(datetime.now())
+
+
+#To Do: Email the filtered list to a given email 
+
